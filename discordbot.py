@@ -7,6 +7,8 @@ import urllib.request
 import requests
 import urllib.parse
 import re
+import os
+import traceback
 
 from googletrans import Translator
 from discord.ext import commands,tasks
@@ -127,6 +129,8 @@ members = {
     "兄じゃぁぁぁ": '338151444731658240/634667072105873436/image0.jpg',
     "_toni": '622705703454244885/636051629170360322/icon3.png',
     "krty": '622705703454244885/635404047028846593/kkrrttyy.png',}
+
+TOKEN = os.environ['DISCORD_BOT_TOKEN']
 
 @bot.event
 async def on_ready():
@@ -1102,4 +1106,4 @@ async def jaen(ctx,content=""):
                 await ctx.send(translation.text)
 
 if __name__ == '__main__':
-    bot.run("NjI5Njg1NDg1Nzc3NzE1MjE5.XZdWhA.i8SMcx-UaDKD1aGCay4S2ao6fBA")
+    bot.run(TOKEN)
