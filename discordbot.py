@@ -1105,5 +1105,4 @@ async def jaen(ctx,content=""):
             for translation in translations:
                 await ctx.send(translation.text)
 
-if __name__ == '__main__':
     bot.run(TOKEN)
