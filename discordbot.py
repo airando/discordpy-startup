@@ -16,4 +16,5 @@ async def ping(ctx):
     await ctx.send('pong')
 
 
-bot.run(token)
+if __name__ == '__main__':
+    bot.run(token)
