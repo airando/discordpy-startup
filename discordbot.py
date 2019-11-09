@@ -4,7 +4,6 @@ import asyncio
 import random
 import json
 import urllib.request
-import requests
 import urllib.parse
 import re
 import os
