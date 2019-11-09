@@ -9,7 +9,6 @@ import re
 import os
 import traceback
 
-from googletrans import Translator
 from discord.ext import commands,tasks
 from discord import Webhook,RequestsWebhookAdapter
 
