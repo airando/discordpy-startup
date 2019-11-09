@@ -1093,14 +1093,4 @@ async def google(ctx,content=""):
         req = requests.get(url, params={'q': f'{content}'})
         await ctx.send(req.url)
 
-@bot.command(description="翻訳できるってほんまか工藤")
-async def jaen(ctx,content=""):
-        if not content:
-            await ctx.send("k!jaen {内容}")
-        else:
-            translator = Translator()
-            translations = translator.translate([f'{content}'],src='ja' ,dest='en')
-            for translation in translations:
-                await ctx.send(translation.text)
-
 bot.run(TOKEN)
