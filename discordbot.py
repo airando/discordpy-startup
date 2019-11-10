@@ -715,50 +715,34 @@ async def on_message(message):
                     channel = discord.utils.get(message.guild.channels, name='tao敵ログ')
                     if channel is not None:
                         if title.find("が待ち構えている...！"):
+                            attribute = f"{title.split()[-6]}".replace('属性:','')
+                            now = datetime.datetime.now()
+                            micro = f"{now.microsecond}".replace("0", "")
+                            level = title.split()[-2]
+                            hp = title.split()[-1]
+                            exp = f"{title.split()[-2]}".replace('Lv.', '')
+                            name = f"{title.split()[-3]}".replace('が待ち構えている...！', '')
                             if title.find("【超激レア】") != -1:
-                                now = datetime.datetime.now()
-                                name = title.split()[-3].replace('が待ち構えている...！', '')
-                                level = title.split()[-2]
-                                hp = title.split()[-1]
-                                exp = title.split()[-2].replace('Lv.', '')
                                 role = next(c for c in message.guild.roles if c.name == '☽TAO出現ログ')
-                                embed = discord.Embed(description=f"{message.channel.mention}で{name}が出現しました！\n敵のレベルは`[{level}]`\n敵の体力は`[{hp}]`\n\nゲットできる経験値数は`[{exp*100}]`です！\n**[この{name}への直通リンク]({message.jump_url})**")
+                                embed = discord.Embed(description=f"{message.channel.mention}で{name}が出現しました！\n敵のレベルは`[{level}]`\n敵の体力は`[{hp}]`\n敵の属性は`{attribute}`\n\nゲットできる経験値数は`[{exp*100}]`です！\n**[この{name}への直通リンク]({message.jump_url})**")
                                 embed.set_thumbnail(url=image)
                                 embed.set_footer(text=f'出現時刻:{now.year}年{now.day}月{now.hour}時{now.minute}分{now.second}秒{now.microsecond}')
                                 await channel.send(f"{role.mention}よ、出陣じゃぁぁ", embed=embed)
                             elif title.find("【レア】") != -1:
-                                now = datetime.datetime.now()
-                                micro = f"{now.microsecond}".replace("0","")
-                                name = title.split()[-3].replace('が待ち構えている...！', '')
-                                level = title.split()[-2]
-                                hp = title.split()[-1]
-                                exp = title.split()[-2].replace('Lv.', '')
                                 role = next(c for c in message.guild.roles if c.name == '☽TAO出現ログ')
-                                embed = discord.Embed(description=f"{message.channel.mention}で{name}が出現しました！\n敵のレベルは`[{level}]`\n敵の体力は`[{hp}]`\n\nゲットできる経験値数は`[{exp}00]`です！\n**[この{name}への直通リンク]({message.jump_url})**")
+                                embed = discord.Embed(description=f"{message.channel.mention}で{name}が出現しました！\n敵のレベルは`[{level}]`\n敵の体力は`[{hp}]`\n敵の属性は`{attribute}`\n\nゲットできる経験値数は`[{exp*100}]`です！\n**[この{name}への直通リンク]({message.jump_url})**")
                                 embed.set_thumbnail(url=image)
                                 embed.set_footer(text=f'出現時刻:{now.year}年{now.day}月{now.hour}時{now.minute}分{now.second}.{micro}秒')
                                 await channel.send(f"{role.mention}よ、出陣じゃぁぁ", embed=embed)
                             elif title.find("【強敵】") != -1:
-                                now = datetime.datetime.now()
-                                micro = f"{now.microsecond}".replace("0","")
-                                name = title.split()[-3].replace('が待ち構えている...！', '')
-                                level = title.split()[-2]
-                                hp = title.split()[-1]
-                                exp = title.split()[-2].replace('Lv.', '')
                                 role = next(c for c in message.guild.roles if c.name == '🌑TAO出現ログ')
-                                embed = discord.Embed(description=f"{message.channel.mention}で{name}が出現しました！\n敵のレベルは`[{level}]`\n敵の体力は`[{hp}]`\n\nゲットできる経験値数は`[{exp}00]`です！\n**[この{name}への直通リンク]({message.jump_url})**")
+                                embed = discord.Embed(description=f"{message.channel.mention}で{name}が出現しました！\n敵のレベルは`[{level}]`\n敵の体力は`[{hp}]`\n敵の属性は`{attribute}`\n\nゲットできる経験値数は`[{exp*100}]`です！\n**[この{name}への直通リンク]({message.jump_url})**")
                                 embed.set_thumbnail(url=image)
                                 embed.set_footer(text=f'出現時刻:{now.year}年{now.day}月{now.hour}時{now.minute}分{now.second}.{micro}秒')
                                 await channel.send(f"{role.mention}よ、出陣じゃぁぁ", embed=embed)
                             elif title.find("【超強敵】") != -1:
-                                now = datetime.datetime.now()
-                                micro = f"{now.microsecond}".replace("0","")
-                                name = title.split()[-3].replace('が待ち構えている...！', '')
-                                level = title.split()[-2]
-                                hp = title.split()[-1]
-                                exp = title.split()[-2].replace('Lv.', '')
                                 role = next(c for c in message.guild.roles if c.name == '🌑TAO出現ログ')
-                                embed = discord.Embed(description=f"{message.channel.mention}で{name}が出現しました！\n敵のレベルは`[{level}]`\n敵の体力は`[{hp}]`\n\nゲットできる経験値数は`[{exp}00]`です！\n**[この{name}への直通リンク]({message.jump_url})**")
+                                embed = discord.Embed(description=f"{message.channel.mention}で{name}が出現しました！\n敵のレベルは`[{level}]`\n敵の体力は`[{hp}]`\n敵の属性は`{attribute}`\n\nゲットできる経験値数は`[{exp*100}]`です！\n**[この{name}への直通リンク]({message.jump_url})**")
                                 embed.set_thumbnail(url=image)
                                 embed.set_footer(text=f'出現時刻:{now.year}年{now.day}月{now.hour}時{now.minute}分{now.second}.{micro}秒')
                                 await channel.send(f"{role.mention}よ、出陣じゃぁぁ", embed=embed)
