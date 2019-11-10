@@ -273,7 +273,7 @@ async def on_member_join(member):
         await member.add_roles(role2)
 
 @bot.command()
-async def sakujo(ctx,number=""):
+async def delete(ctx,number=""):
     if ctx.channel.overwrites_for(ctx.author).administrator is True or discord.utils.get(ctx.author.roles, name="運営スタッフ") or discord.utils.get(ctx.author.roles, name="運営"):
         if not number:
             await ctx.send("y!clean {number}")
@@ -608,6 +608,7 @@ async def on_message(message):
         embed.add_field(name="k!weather {都道府県}", value="指定した都道府県の天気を表示します。", inline=False)
         embed.add_field(name="k!role {役職メンション} {メンバーメンション}", value="指定したメンバーに指定した役職を付与します。\n※運営と運営スタッフのみ実行できます。",inline=False)
         embed.add_field(name="k!help dp",value="[discord.pyのAPIリフェンス](https://discordpy.readthedocs.io/ja/latest/api.html#)の項目ヘルプを表示します。",inline=False)
+        embed.add_field(name="k!cinfo", value="チャンネルの情報", inline=False)
         embed.add_field(name="k!sinfo", value="サーバーの情報", inline=False)
         embed.add_field(name="k!uinfo", value="ユーザーの情報", inline=False)
         embed.add_field(name="▽招待▽", value="△招待△", inline=False)
