@@ -828,61 +828,6 @@ async def on_message(message):
                 if channel.name == "yui_global":
                     await channel.send(embed=embed)
 
-    #メンバー募集 (.rect 数字)
-    if message.content.startswith(".rect"):
-        mcount = message.content.split()[-1]
-        text= "あと{}人 募集中\n"
-        revmsg = text.format(mcount)
-        #friend_list 押した人のList
-        frelist = []
-        msg = await message.channel.send(revmsg)
-
-        #投票の欄
-        await msg.add_reaction('\u21a9')
-        await msg.add_reaction('⏫')
-        await msg.pin()
-
-        #リアクションをチェックする
-        while len(frelist) < int(mcount):
-            target_reaction = await bot.wait_for('reaction_add')
-            #発言したユーザが同一でない場合 真
-            if target_reaction != message.author:
-                #==============================================================
-                #押された絵文字が既存のものの場合 >> 左　del
-                if target_reaction.reaction.emoji == '\u21a9':
-                    #==========================================================
-                    #◀のリアクションに追加があったら反応 frelistにuser.nameがあった場合　真
-                    if target_reaction.user.name in frelist:
-                        frelist.remove(target_reaction.user.name)
-                        mcount += 1
-                        #リストから名前削除
-                        await msg.edit(text.format(mcount) +'\n'.join(frelist))
-                            #メッセージを書き換え
-
-                    else:
-                        pass
-                #==============================================================
-                #押された絵文字が既存のものの場合　>> 右　add
-                elif target_reaction.reaction.emoji == '⏫':
-                    if target_reaction.user.name in frelist:
-                        pass
-
-                    else:
-                        frelist.append(target_reaction.user.name)
-                        #リストに名前追加
-                        mcount -=1
-                        await msg.edit(text.format(mcount) +'\n'.join(frelist))
-
-                elif target_reaction.reaction.emoji == '✖':
-                        await msg.edit(msg, '募集終了\n'+ '\n'.join(frelist))
-                        await msg.unpin()
-                        break
-                await msg.remove_reaction(target_reaction.reaction.emoji, target_reaction.user)
-                #ユーザーがつけたリアクションを消す※権限によってはエラー
-                #==============================================================
-        else:
-            await msg.edit('募集終了\n'+ '\n'.join(frelist))
-
     await bot.process_commands(message)
 
 @bot.command()
