@@ -14,17 +14,6 @@ from discord.ext import commands
 bot = commands.Bot(command_prefix="k!",help_command=commands.HelpCommand(command_attrs={'hidden': True}))
 client = discord.Client()
 
-gribto = {
-    "おはよう":random.choice(('おはようございます','んにゃー')),
-    "こい":random.choice(('come!come!','ん？恋ですか♡')),
-    "きて": random.choice(('come!come!', 'いえあ')),
-    "かった": random.choice(('良かったですね', '(過去形)')),
-    "ました": random.choice(('お、おう…。', 'なるほどね')),
-    "こんにちは": random.choice(('にゃはー', 'こんにちはー')),
-    "おやすみ": random.choice(('おやすみなさい', 'ξ ´っω-` Ҙ..zzZ♥')),
-    "ねろ": random.choice(('ねた', 'だが断る！')),
-    "ましょう。": random.choice(('おう！', 'いえっさー')),
-}
 citycodes = {
     "北海道": '016010',
     "青森県": '020010',
