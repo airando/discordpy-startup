@@ -398,7 +398,7 @@ url_embed] #ヘルプの各ページ内容
 
     if message.author.id == 526620171658330112 or message.author.id == 642271360667877386:
         if len(message.embeds) != 0:
-           
+            print(to_dict())
             for embed in message.embeds:
                 description = embed.description
                 title = embed.title
@@ -1070,7 +1070,7 @@ url_embed] #ヘルプの各ページ内容
 
 
 
-    if client.user != message.author and message.channel.name == "global_yui" and not "discord.gg" in message.author.name:
+    if (len(message.embeds) == 0) and (message.channel.name == "global_yui") and (not "discord.gg" in message.author.name):
         content = ""
         for msg in message.content.split():
             if "http://" in message.content or"https://" in message.content or"discord.gg" in message.content:
