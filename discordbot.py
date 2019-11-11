@@ -988,4 +988,5 @@ async def tao(ctx):
     if channel is not None:
         await ctx.send(f'{ctx.author.mention}さんのために{channel.mention}を心をこめて作成しました')
 
-bot.run(token)
+if __name__ == '__main__':
+    bot.run(token)
