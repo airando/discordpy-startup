@@ -717,13 +717,13 @@ async def on_message(message):
                                 embed = discord.Embed(description=f"{message.channel.mention}で{name}が出現しました！\n敵のレベルは`[{level}]`\n敵の体力は`[{hp}]`\n敵の属性は`{attribute}`\n\nゲットできる経験値数は`[{exp*100}]`です！\n**[この{name}への直通リンク]({message.jump_url})**")
                                 embed.set_thumbnail(url=image)
                                 embed.set_footer(text=f'出現時刻:{now.year}年{now.day}月{now.hour}時{now.minute}分{now.second}秒{now.microsecond}')
-                                await channel.send(embed=embed,f"{role.mention}よ、出陣じゃぁぁ")
+                                await channel.send(embed=embed,*f"{role.mention}よ、出陣じゃぁぁ")
                             elif title.find("【強敵】") != -1 or title.find("【超強敵】") != -1:
                                 role = next(c for c in message.guild.roles if c.name == '🌑TAO出現ログ')
                                 embed = discord.Embed(description=f"{message.channel.mention}で{name}が出現しました！\n敵のレベルは`[{level}]`\n敵の体力は`[{hp}]`\n敵の属性は`{attribute}`\n\nゲットできる経験値数は`[{exp*100}]`です！\n**[この{name}への直通リンク]({message.jump_url})**")
                                 embed.set_thumbnail(url=image)
                                 embed.set_footer(text=f'出現時刻:{now.year}年{now.day}月{now.hour}時{now.minute}分{now.second}.{micro}秒')
-                                await channel.send(embed=embed,f"{role.mention}よ、出陣じゃぁぁ")
+                                await channel.send(embed=embed,*f"{role.mention}よ、出陣じゃぁぁ")
 
     if message.content.startswith("⌛"):
         embed = discord.Embed(description="**__5__**秒後にメッセージが削除されます。")
