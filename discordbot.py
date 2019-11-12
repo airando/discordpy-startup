@@ -687,8 +687,8 @@ async def on_message(message):
             for embed in message.embeds:
                 if embed.title:
                     title = embed.title
-                    if message.channel.category.name.startswith("初心者tao🌸"):
-                        level = int(message.channel.category.name.split()[-1])
+                    if message.channel.name.startswith("初心者tao🌸"):
+                        level = int(message.channel.category.name.split("-")[-1])
                         setting = f"{level}"
                         if title.find(f"Lv.{setting}") != -1:
                             await message.channel.send("10秒後にチャンネルが削除されます。")
