@@ -257,13 +257,13 @@ async def on_member_join(member):
     name = member.display_name
     now = datetime.datetime.now()
     if member.guild.id == 596278883846979585:
-        channel = guild.get_channel(603156893355212800)
+        channel = guild.get_channel(596676794145570837)
         embed = discord.Embed(title='{0}さんようこそ、Crestへ！'.format(name), colour=0x2ECC69,description='現在多くのチャンネルで喋れない状態になっています。\n[ルール](https://discordapp.com/channels/596278883846979585/596662568085618688/623844598162391053)を確認して\n{3} で**k!crest-account**と打ち、登録しましょう。\nこのサーバーの現在の人数は{1}人です。\n{2}に作られたアカウントです。'.format(member.mention, member.guild.member_count, member.created_at, channel.mention))
     else:
         embed = discord.Embed(title='{0}さんようこそ'.format(name), colour=0x2ECC69,description='{0}さんがサーバーに参加しました。\nこのサーバーの現在の人数は{1}人です。\n{2}に作られたアカウントです。'.format(member.mention, member.guild.member_count, member.created_at))
     embed.set_footer(text='入室時間:{0:%p.%I.%M.%S}'.format(now))
     embed.set_thumbnail(url=member.avatar_url)
-    channel = next(c for c in member.guild.channels if c.name == '参加者さん')
+    channel = next(c for c in member.guild.channels if c.name == '📌エントランス')
     role = next(c for c in member.guild.roles if c.name == 'アカウント未登録者')
     role2 = next(c for c in member.guild.roles if c.name == 'BOT')
     await channel.send(embed=embed)
