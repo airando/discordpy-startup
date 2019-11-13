@@ -257,7 +257,7 @@ async def on_member_join(member):
     name = member.display_name
     now = datetime.datetime.now()
     if member.guild.id == 596278883846979585:
-        channel = guild.get_channel(596676794145570837)
+        channel = guild.get_channel(603156893355212800)
         embed = discord.Embed(title='{0}さんようこそ、Crestへ！'.format(name), colour=0x2ECC69,description='現在多くのチャンネルで喋れない状態になっています。\n[ルール](https://discordapp.com/channels/596278883846979585/596662568085618688/623844598162391053)を確認して\n{3} で**k!crest-account**と打ち、登録しましょう。\nこのサーバーの現在の人数は{1}人です。\n{2}に作られたアカウントです。'.format(member.mention, member.guild.member_count, member.created_at, channel.mention))
     else:
         embed = discord.Embed(title='{0}さんようこそ'.format(name), colour=0x2ECC69,description='{0}さんがサーバーに参加しました。\nこのサーバーの現在の人数は{1}人です。\n{2}に作られたアカウントです。'.format(member.mention, member.guild.member_count, member.created_at))
