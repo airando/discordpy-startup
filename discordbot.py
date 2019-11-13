@@ -790,6 +790,21 @@ async def on_message(message):
                 if channel.name == "yui_global":
                     await channel.send(embed=embed)
 
+    if ("https://discordapp.com/channels/" in message.content) and (not message.author == bot.user):
+        url = ""
+        image = ""
+        for msg in f"{message.content}".split():
+            if "https://discordapp.com/channels/" in msg:
+                url = msg
+        id = re.sub(r"(https://discordapp.com/channels/)([0-9]*)(/*)([0-9]*)(/*)([0-9]*)", r"\6", url)
+        channel = re.sub(r"(https://discordapp.com/channels/)([0-9]*)(/*)([0-9]*)(/*)([0-9]*)", r"\4", url)
+        channel = bot.get_channel(int(channel))
+        if channel is not None:
+            msg = await channel.fetch_message(int(id))
+            for imagee in msg.attachments:
+                image = imagee.url
+            await message.channel.send(embed=discord.Embed(description=f"{msg.content}").set_author(icon_url=msg.author.avatar_url,name=msg.author).set_image(url=image).set_footer(text=f"{msg.created_at}"))
+
     await bot.process_commands(message)
 
 @bot.command()
