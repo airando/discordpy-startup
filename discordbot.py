@@ -266,11 +266,12 @@ async def on_member_join(member):
     channel = discord.utils.get(message.guild.channels, id=603156893355212800)
     role = next(c for c in member.guild.roles if c.name == 'アカウント未登録者')
     role2 = next(c for c in member.guild.roles if c.name == 'BOT')
-    await channel.send(embed=embed)
-    await member.add_roles(role)
-    if member.bot:
-        await member.remove_roles(role)
-        await member.add_roles(role2)
+    if channel not None:
+        await channel.send(embed=embed)
+        await member.add_roles(role)
+        if member.bot:
+            await member.remove_roles(role)
+            await member.add_roles(role2)
 
 @bot.command()
 async def delete(ctx,number=""):
