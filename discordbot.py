@@ -266,7 +266,7 @@ async def on_member_join(member):
     channel = discord.utils.get(message.guild.channels, id=603156893355212800)
     role = next(c for c in member.guild.roles if c.name == 'アカウント未登録者')
     role2 = next(c for c in member.guild.roles if c.name == 'BOT')
-    if channel not None:
+    if channel is not None:
         await channel.send(embed=embed)
         await member.add_roles(role)
         if member.bot:
