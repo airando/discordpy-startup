@@ -263,7 +263,7 @@ async def on_member_join(member):
         embed = discord.Embed(title='{0}さんようこそ'.format(name), colour=0x2ECC69,description='{0}さんがサーバーに参加しました。\nこのサーバーの現在の人数は{1}人です。\n{2}に作られたアカウントです。'.format(member.mention, member.guild.member_count, member.created_at))
     embed.set_footer(text='入室時間:{0:%p.%I.%M.%S}'.format(now))
     embed.set_thumbnail(url=member.avatar_url)
-    channel = discord.utils.get(message.guild.channels, id=603156893355212800)
+    channel = discord.utils.get(member.guild.channels, id=603156893355212800)
     role = next(c for c in member.guild.roles if c.name == 'アカウント未登録者')
     role2 = next(c for c in member.guild.roles if c.name == 'BOT')
     if channel is not None:
