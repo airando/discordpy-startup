@@ -132,19 +132,19 @@ async def on_ready():
                     await asyncio.sleep(60)
 
 @bot.event
-async def on_member_ban(guild, user):
-    g = bot.get_guild(622705702925893663)
-    login = next(c for c in g.emojis if c.name == 'loading')
-    channel = next(c for c in guild.channels if c.name == '運営ルーム')
-    await channel.send(f"{user}がBANされました。")
-    embed = discord.Embed(title="メッセージ削除",description=f"{login} {user}のメッセージを削除中です",color=0xe74c3c)
-    m = await channel.send(embed=embed)
-    for c in guild.text_channels:
+async def on_member_remove(member):
+    g = discord.utils.get(bot.guilds,id=622705702925893663)
+    c = discord.utils.get(g.channels,name="運営ルーム")
+    emoji = discord.utils.get(g.emojis,name="loading")
+    embed = discord.Embed(title="メッセージ削除",description=f"{emoji} {member}のメッセージを削除中です",color=0xe74c3c)
+    m = await c.send(embed=embed)
+    for c in member.guild.text_channels:
         async for msg in c.history(limit=None):
-            if user.id == msg.author.id:
+            if member.id == msg.author.id:
                 await msg.delete()
     await m.delete()
-    await channel.send(f"{user}のメッセージを全て削除しました。")
+    embed = discord.Embed(title="メッセージ削除完了",description=f"{member}のメッセージの削除が完了しました。",color=0xe74c3c)
+    await c.send(embed=embed)
 
 @bot.event
 async def on_command_error(ctx,error):
