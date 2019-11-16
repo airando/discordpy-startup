@@ -138,8 +138,8 @@ async def on_member_remove(member):
     emoji = discord.utils.get(g.emojis,name="loading")
     embed = discord.Embed(title="メッセージ削除",description=f"{emoji} {member}のメッセージを削除中です",color=0xe74c3c)
     m = await c.send(embed=embed)
-    for c in member.guild.text_channels:
-        async for msg in c.history(limit=None):
+    for channel in member.guild.text_channels:
+        async for msg in channel.history(limit=None):
             if member.id == msg.author.id:
                 await msg.delete()
     await m.delete()
