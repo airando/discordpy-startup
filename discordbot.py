@@ -792,19 +792,24 @@ async def on_message(message):
                     await channel.send(embed=embed)
 
     if ("https://discordapp.com/channels/" in message.content) and (not message.author == bot.user):
-        url = ""
-        image = ""
-        for msg in f"{message.content}".split():
-            if "https://discordapp.com/channels/" in msg:
-                url = msg
-        id = re.sub(r"(https://discordapp.com/channels/)([0-9]*)(/*)([0-9]*)(/*)([0-9]*)", r"\6", url)
-        channel = re.sub(r"(https://discordapp.com/channels/)([0-9]*)(/*)([0-9]*)(/*)([0-9]*)", r"\4", url)
-        channel = bot.get_channel(int(channel))
-        if channel is not None:
-            msg = await channel.fetch_message(int(id))
-            for imagee in msg.attachments:
-                image = imagee.url
-            await message.channel.send(embed=discord.Embed(description=f"{msg.content}").set_author(icon_url=msg.author.avatar_url,name=msg.author).set_image(url=image).set_footer(text=f"{msg.created_at}"))
+        for Msg in f"{message.content}".split():
+            if "https://discordapp.com/channels/" in Msg:
+                url = Msg
+                id = re.sub(r"(https://discordapp.com/channels/)([0-9]*)(/*)([0-9]*)(/*)([0-9]*)", r"\6", url)
+                channel = re.sub(r"(https://discordapp.com/channels/)([0-9]*)(/*)([0-9]*)(/*)([0-9]*)", r"\4", url)
+                channel = bot.get_channel(int(channel))
+                if channel is not None:
+                    msg = await channel.fetch_message(int(id))
+                    if len(msg.embeds) == 0:
+                        if msg.attachments:await message.channel.send(embed=discord.Embed(description=f"{msg.content}").set_author(icon_url=msg.author.avatar_url,name=msg.author).set_image(url=msg.attachments[0].url).set_footer(text=f"{msg.created_at}"))
+                        else:await message.channel.send(embed=discord.Embed(description=f"{msg.content}").set_author(icon_url=msg.author.avatar_url,name=msg.author).set_footer(text=f"{msg.created_at}"))
+                    else:
+                        count = len(list(await message.guild.webhooks()))
+                        if count < 10:
+                            webhook = await message.channel.create_webhook(name=f"{bot.user.name}")
+                            await webhook.send(embed=msg.embeds[0],avatar_url=msg.author.avatar_url,username=msg.author.name)
+                            await webhook.delete()
+                        else:await message.channel.send(embed=msg.embeds[0])
 
     await bot.process_commands(message)
 
