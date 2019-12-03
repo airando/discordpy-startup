@@ -134,7 +134,7 @@ async def on_ready():
 @bot.event
 async def on_member_remove(member):
     g = discord.utils.get(bot.guilds,id=622705702925893663)
-    c = discord.utils.get(member.guild.channels,name="運営ルーム")
+    c = discord.utils.get(member.guild.channels,id=651367615326846981)
     emoji = discord.utils.get(g.emojis,name="loading")
     embed = discord.Embed(title="メッセージ削除",description=f"{emoji} {member}のメッセージを削除中です",color=0xe74c3c)
     m = await c.send(embed=embed)
